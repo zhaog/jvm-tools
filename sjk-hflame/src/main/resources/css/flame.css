@@ -1,0 +1,402 @@
+div.credit {
+    font-size: 10;
+    text-align: right
+}
+
+div.flameFrame {
+    border: solid;
+    border-width: 1px;
+    padding: 0.5em;
+    margin: 0.2em;
+    min-width: 300px;
+    overflow-x: auto;
+}
+
+div.flameArea {
+    display: flex;
+    flex-direction: column-reverse;
+    min-height: 20em;
+}
+
+div.flameRoot {
+    font-size: 11px;
+    font-family: monospace;
+}
+
+div.flameRoot div.empty {
+    text-align: center;
+    font-family: monospace;
+    font-size: 2em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+
+div.flameBox {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    flex-grow: 0;
+    align-self: flex-end;
+    overflow: hidden;
+}
+
+div.flameRow {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    flex-basis: 100%;
+    overflow: hidden;
+}
+
+div.execNode {
+    border: solid;
+    border-color: transparent;
+    border-width: 2px;
+    width: 100%;
+    margin: 0;
+    padding: 0px 0px 0px 3px;
+    border-radius: 1px;
+    background-color: antiquewhite;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+div.execNode:hover {
+    border-color: #511;
+    font-weight: bold;
+}
+
+div.twaitSmoke {
+    border: none;
+    border-width: 1px;
+    width: 100%;
+    margin: 0.5px;
+    padding-top: 0.3em;
+    margin-bottom: 0.3em;
+    border-radius: 3px;
+    background-color: #86B;
+}
+
+div.twaitSmoke:hover {
+    background-color: #b8F;
+}
+
+div.waitSmoke {
+    border: none;
+    border-width: 1px;
+    width: 100%;
+    margin: 0.5px;
+    padding-top: 0.3em;
+    margin-bottom: 0.3em;
+    border-radius: 3px;
+    background-color: #694;
+}
+
+div.waitSmoke:hover {
+    background-color: #bf8;
+}
+
+div.hotSmoke {
+    border: none;
+    border-width: 1px;
+    width: 100%;
+    margin: 0.5px;
+    padding-top: 0.3em;
+    margin-bottom: 0.3em;
+    border-radius: 3px;
+    background-color: #d33;
+}
+
+div.hotSmoke:hover {
+    background-color: #711;
+}
+
+div.blockSmoke {
+    border: none;
+    border-width: 1px;
+    width: 100%;
+    margin: 0.5px;
+    padding-top: 0.3em;
+    margin-bottom: 0.3em;
+    border-radius: 3px;
+    background-color: #d33;
+}
+
+div.blockSmoke:hover {
+    background-color: #711;
+}
+
+div.ioSmoke {
+    border: none;
+    border-width: 1px;
+    width: 100%;
+    margin: 0.5px;
+    padding-top: 0.3em;
+    margin-bottom: 0.3em;
+    border-radius: 3px;
+    background-color: #d33;
+}
+
+div.ioSmoke:hover {
+    background-color: #711;
+}
+
+div.termSmoke {
+    border: none;
+    border-width: 1px;
+    width: 100%;
+    margin: 0.7px;
+    padding-top: 0.3em;
+    margin-bottom: 0.3em;
+    border-radius: 3px;
+    background-color: #111;
+}
+
+div.termSmoke:hover {
+    background-color: #555;
+}
+
+div.flameHover {
+    display: none;
+    position: absolute;
+	border:1px solid #333;
+	background-color: antiquewhite;
+	border-radius: 4px;
+	padding: 4px;
+	color: #000;
+    font-size: 11px;
+    font-family: monospace;
+    white-space: nowrap;
+    min-width: 20em;
+    z-index: 10000;
+}
+
+div.flameHover > p.hoverFrame {
+    margin: 0;
+    font-weight: bold;
+}
+
+div.flameHover > p.hoverStats {
+    margin: 0;
+    padding-left: 1em;
+}
+
+div.flameHover div.toolbar {
+    margin-top: 0.2em;
+    text-align: right;
+    font-size: 1.2em;
+}
+
+div.flameHover div.toolbar span {
+    margin-right: 0.2em;
+}
+
+div.flameHover div.toolbar a {
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    color: #44F;
+    cursor: pointer;
+}
+
+div.flameHover div.toolbar a:hover {
+    text-decoration: underline;
+}
+
+div.flameHover div.trace {
+    margin: 0.2em 1em 0.2em 1em;
+    overflow-y: auto;
+    overflow-x: auto;
+    max-height: 6em;
+}
+
+div.flameHover div.trace p {
+    margin: 0;
+    font-size: 0.8em;
+    font-family: monospace;
+}
+
+div.flameHover div.trace p.ff {
+    color: #888;
+}
+
+
+div.flameHover div.trace p:before {
+    content: '- ';
+}
+
+div.flameHover div.trace p.ff:before {
+    content: '(';
+    padding-left: 0.6em;
+}
+
+div.flameHover div.trace p.ff:after {
+    content: ')';
+}
+
+/* zoom bar */
+
+div.flameRoot div.zoomBar {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 0.2em;
+}
+
+div.flameRoot div.zoomFrame {
+    border: solid;
+    border-color: transparent;
+    border-width: 2px;
+    margin: 0;
+    padding: 0px 0px 0px 3px;
+    border-radius: 1px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;    
+}
+
+
+div.flameRoot div.zoomBar p {
+    margin: 0;
+}
+
+div.flameRoot div.zoomBar p.doUnzoom {
+    display: none;
+}
+
+div.flameRoot div.zoomBar:hover p.zoomInfo {
+    display: none;
+}
+
+div.flameRoot div.zoomBar:hover p.doUnzoom {
+    display: block;
+}
+
+/* State filter */
+
+div.flameStateFilter {
+    position: relative;    
+}
+
+div.flameStateFilter div.panel {
+    font-family: sans-serif;
+    font-size: 9pt;
+    border: 1px solid;
+    margin: 0;
+    padding: 0.5em;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color:  beige;
+    overflow-y: auto;
+    max-height: 20em;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+div.flameStateFilter p {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+div.flameStateFilter > a {
+    color: #44F;
+    cursor: pointer;    
+}
+
+div.flameStateFilter > a:hover {
+    text-decoration: underline;
+}
+
+/* Thread filter */
+
+div.flameThreadFilter {
+    position: relative;
+}
+
+div.flameThreadFilter div.panel {
+    font-family: sans-serif;
+    font-size: 9pt;
+    border: 1px solid;
+    margin: 0;
+    padding: 0.5em;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color:  beige;
+    overflow-y: auto;
+    max-height: 20em;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+div.flameThreadFilter p {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+div.flameThreadFilter > a {
+    color: #44F;
+    cursor: pointer;    
+}
+
+div.flameThreadFilter > a:hover {
+    text-decoration: underline;
+}
+
+div.flameThreadFilter div.search {
+    margin-bottom: 0.5em;
+    display: flex;
+    flex-direction: row;
+}
+
+div.flameThreadFilter div.search input {
+    padding: 0.1em;
+    flex-grow: 1;
+    font-size: 0.9em;
+}
+
+div.flameThreadFilter div.search a {
+    color: #44F;
+    cursor: pointer;
+    font-size: 10pt;
+    margin: 0.1em 0.2em 0 0.2em;
+}
+
+div.flameThreadFilter div.search a:hover {
+    text-decoration: underline;
+}
+
+div.flameThreadFilter p.empty {
+    color: #888;
+    padding: 0.5em 2em 0 2em;
+    font-style: italic;
+}
+
+
+/* !!THROW AWAY BELOW!! */
+
+div.execNode.fg1_fr8_x {
+    background-color: #FAF;
+    border-color: #511;
+    font-weight: bold;
+}
+
+#debug_console {
+    overflow-y: scroll;
+    max-height: 20em;
+}
+
+#debug_console p {
+    margin: 0;
+    font-family: monospace;
+}
+
+#debug_console1 {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 50 50'><path style='fill:%23aaaaaa;stroke:none;fill-opacity:1' d='M 0,25 25,0 50,0 0,50 Z'/><path style='fill:%23aaaaaa;stroke:none;fill-opacity:1' d='M 50,25 25,50 50,50 Z'/></svg>");
+}

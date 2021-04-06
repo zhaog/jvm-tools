@@ -1,6 +1,86 @@
 Next version
 ----
 
+0.17 - 2020 Oct 25
+----
+- Clean up whitespaces in `ssa --thread-info` command
+- Add `--numeric` option for `ssa --thread-info`
+
+0.16 - 2020 Jun 28
+----
+- Added `hs` command
+- Ability to active HostpotInternal MBeans via JVM agent `hs --enable-hotspot-mbean`
+- Support multiple attributes in `mx --get`
+- Options to control header in `mx --get` CSV output mode
+
+
+0.15 - 2020 Jan 8
+----
+- Fixed NPE parsing some Java 11 JFR files
+- Fixed Netbeans/VisualVM nps files parsing
+
+0.14 - 2019 Aug 11
+----
+- Support for parsing JFR recordings Java 8 - 11
+- `jfr2json` command to convert JFR recordings to json
+- Support JFR allocation samples in `ssa` command
+- Support JFR exception event in `ssa` command
+
+0.12 - 2019 Mar 15
+----
+- Java 11 compatibility fixes
+- `mxping` command for connectivity diagnostics
+- `vminfo` support JVM flags listing
+
+0.11 - 2018 Dec 12
+----
+- Support JMX over TLS remote connections
+- `mxprx` command force correct RMI hostname usage
+- `vminfo` command added
+- Stack trace filter language improvements
+- Support Java 9/10 strings
+- Fixed parsing JFR files under JDK 9/10
+
+0.10.1 - 2018 Jun 4
+----
+- Java 9/10 compatibility fixes
+
+0.10 - 2018 May 28
+----
+- Added contention monitoring option to `ttop` command
+- `jstack` thread dump text format is now accepted by analytic commands
+- Added 'flame' command producing flame chart in HTML format
+
+0.9.3 - 2018 Mar 31
+----
+- Few minor changes in heap parser
+
+0.9.2 - 2018 Feb 18
+----
+- Frame histogram can be sorted by terminal count (default sort is by occurance count)
+- Export of tabular MBean attributes to CSV
+- Fixed NPE in thread dump collector
+
+0.9.1 - 2018 Jan 9
+----
+- Fixed few issues with hprof heap parser
+
+0.9 - 2017 Dec 24
+----
+- Fixed undesired splitting of JMX call arguments by comma
+- Fixed time range filtering for `stcpy` command
+- Added `mprx` command, open JMX port for target process
+
+0.8.1 - 2017 Nov 12
+----
+- Added SYS cpu time summary to `ssa --thread-info` command
+- Few improvements for `dexp` command
+
+0.8 - 2017 Aug 6
+----
+- Fixed transitive dependencies issues for JFR and NPS parsers
+- Fixed HeapPath bug for single asterisk path
+
 0.7 - 2017 Jul 23
 ----
 - Parsing stack traces from NetBeans / VisualVM profiler snapshot format

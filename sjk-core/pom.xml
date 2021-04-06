@@ -18,75 +18,83 @@
 
 -->
 
-    <modelVersion>4.0.0</modelVersion>
-    
-    <parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.gridkit.jvmtool</groupId>
+    <artifactId>jvmtool-umbrella-pom</artifactId>
+    <version>0.18-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>sjk-core</artifactId>
+  <name>${project.groupId}::${project.artifactId}</name>
+  <description>Core classes for Swiss Java Knife tool</description>
+
+  <dependencies>
+    <dependency>
       <groupId>org.gridkit.jvmtool</groupId>
-      <artifactId>jvmtool-umbrella-pom</artifactId>
-      <version>0.8-SNAPSHOT</version>
-      <relativePath>../pom.xml</relativePath>
-    </parent>
+      <artifactId>sjk-cli</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.gridkit.jvmtool</groupId>
+      <artifactId>sjk-stacktrace</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.gridkit.jvmtool</groupId>
+      <artifactId>sjk-hflame</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.perfkit.sjk.parsers</groupId>
+      <artifactId>sjk-jfr5</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.perfkit.sjk.parsers</groupId>
+      <artifactId>sjk-jfr6</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.perfkit.sjk.parsers</groupId>
+      <artifactId>sjk-jfr-standalone</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.perfkit.sjk.parsers</groupId>
+      <artifactId>sjk-nps</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.gridkit.lab</groupId>
+      <artifactId>jvm-attach-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.gridkit.jvmtool</groupId>
+      <artifactId>sjk-agent</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.carrotsearch</groupId>
+      <artifactId>junit-benchmarks</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
-    <artifactId>sjk-core</artifactId>
-    <name>${project.groupId}::${project.artifactId}</name>
-    <description>Core classes for Swiss Java Knife tool</description>
-   
-    <dependencies>
-        <dependency>
-            <groupId>org.gridkit.jvmtool</groupId>
-            <artifactId>sjk-cli</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.gridkit.jvmtool</groupId>
-            <artifactId>sjk-stacktrace</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.gridkit.jvmtool</groupId>
-            <artifactId>sjk-jfr</artifactId>
-            <version>0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.gridkit.jvmtool</groupId>
-            <artifactId>sjk-nps</artifactId>
-            <version>0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.gridkit.lab</groupId>
-            <artifactId>jvm-attach-api</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>1.6.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.carrotsearch</groupId>
-            <artifactId>junit-benchmarks</artifactId>
-            <version>0.7.2</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

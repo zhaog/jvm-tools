@@ -1,11 +1,17 @@
 package org.gridkit.jvmtool.stacktrace;
 
+import java.util.Collection;
+
 public class StackFrameArray extends AbstractStackFrameArray {
 
     final StackFrame[] array;
     final int from;
     final int to;
-    
+
+    public StackFrameArray(Collection<StackFrame> frames) {
+        this(frames.toArray(new StackFrame[frames.size()]));
+    }
+
     public StackFrameArray(StackFrame[] array) {
         this(array, 0, array.length);
     }
@@ -19,7 +25,7 @@ public class StackFrameArray extends AbstractStackFrameArray {
     protected StackFrame[] array() {
         return array;
     }
-    
+
     protected int from() {
         return from;
     }

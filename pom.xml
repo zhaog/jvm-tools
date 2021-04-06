@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  
+
 <!--
 
     Copyright 2012 Alexey Ragozin
@@ -28,7 +28,7 @@
 
   <groupId>org.gridkit.jvmtool</groupId>
   <artifactId>jvmtool-umbrella-pom</artifactId>
-  <version>0.8-SNAPSHOT</version>
+  <version>0.18-SNAPSHOT</version>
   <name>${project.groupId}::${project.artifactId}</name>
   <description>JVM tools, parent project</description>
   <packaging>pom</packaging>
@@ -36,13 +36,15 @@
   <modules>
     <module>sjk-cli</module>
     <module>sjk-stacktrace</module>
+    <module>sjk-hflame</module>
     <module>sjk-win32</module>
     <module>sjk-core</module>
+    <module>sjk-agent</module>
+    <module>sjk-json</module>
     <module>mxdump</module>
     <module>gcflow</module>
     <module>sjk</module>
     <module>sjk-plus</module>
-    <module>hprof-heap</module>
     <module>ygc-bench</module>
   </modules>
 
@@ -69,7 +71,123 @@
     <tag>HEAD</tag>
   </scm>
 
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- Local modules -->
+      <dependency>
+        <groupId>org.gridkit.jvmtool</groupId>
+        <artifactId>sjk-cli</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.gridkit.jvmtool</groupId>
+        <artifactId>sjk-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.gridkit.jvmtool</groupId>
+        <artifactId>sjk-stacktrace</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.gridkit.jvmtool</groupId>
+        <artifactId>sjk-hflame</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.gridkit.jvmtool</groupId>
+        <artifactId>mxdump</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.gridkit.jvmtool</groupId>
+        <artifactId>sjk-json</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.gridkit.jvmtool</groupId>
+        <artifactId>sjk-agent</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.gridkit.jvmtool</groupId>
+        <artifactId>ygc-bench</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <!-- Perfkit modules -->
+      <dependency>
+        <groupId>org.perfkit.sjk.parsers</groupId>
+        <artifactId>sjk-jfr5</artifactId>
+        <version>0.5</version>
+      </dependency>
+      <dependency>
+        <groupId>org.perfkit.sjk.parsers</groupId>
+        <artifactId>sjk-jfr6</artifactId>
+        <version>0.7</version>
+      </dependency>
+      <dependency>
+        <groupId>org.perfkit.sjk.parsers</groupId>
+        <artifactId>sjk-nps</artifactId>
+        <version>0.9</version>
+      </dependency>
+      <dependency>
+        <groupId>org.perfkit.sjk.parsers</groupId>
+        <artifactId>sjk-jfr-standalone</artifactId>
+        <version>0.7</version>
+      </dependency>
+      <dependency>
+        <groupId>org.gridkit.lab</groupId>
+        <artifactId>jvm-attach-api</artifactId>
+        <version>1.5</version>
+      </dependency>
+
+      <!-- 3rd party modules -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.11</version>
+      </dependency>
+      <dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-core</artifactId>
+        <version>1.6.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.carrotsearch</groupId>
+        <artifactId>junit-benchmarks</artifactId>
+        <version>0.7.2</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <build>
+
+    <plugins>
+        <!-- SJK is 1.6 compatible -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-toolchains-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>toolchain</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <toolchains>
+                 <jdk>
+                    <version>1.6</version>
+                    <vendor>sun</vendor>
+                 </jdk>
+              </toolchains>
+            </configuration>
+        </plugin>
+    </plugins>
+
     <pluginManagement>
       <plugins>
         <plugin>
@@ -127,6 +245,56 @@
           <version>2.6</version>
           <configuration>
             <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <groupId>net.revelc.code.formatter</groupId>
+          <artifactId>formatter-maven-plugin</artifactId>
+          <version>2.11.0</version>
+        </plugin>
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>1.31.3</version>
+          <configuration>
+            <formats>
+              <format>
+                <!-- Java whitespace formatting -->
+                <includes>
+                  <include>src/**/java/**/*.java</include>
+                </includes>
+                <endWithNewline />
+                <indent>
+                  <spaces>true</spaces>
+                  <tabs>false</tabs>
+                  <spacesPerTab>4</spacesPerTab>
+                </indent>
+                <trimTrailingWhitespace />
+              </format>
+              <format>
+                <!-- Java whitespace formatting -->
+                <includes>
+                  <include>**/pom.xml</include>
+                </includes>
+                <endWithNewline />
+                <indent>
+                  <spaces>true</spaces>
+                  <tabs>false</tabs>
+                  <spacesPerTab>2</spacesPerTab>
+                </indent>
+                <trimTrailingWhitespace />
+              </format>
+            </formats>
           </configuration>
         </plugin>
       </plugins>
